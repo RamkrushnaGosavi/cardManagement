@@ -1,4 +1,9 @@
 package XCardManagement.serviceImpl;
 
-public class CardServiceImpl {
+
+import XCardManagement.service.CardService;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CardServiceImpl implements CardService {
 }

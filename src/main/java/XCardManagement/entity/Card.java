@@ -28,7 +28,7 @@ public class Card {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    AccountHolder accountHolder;
+    Customer customer;
 
 
     public double getCardNumber() {
@@ -87,11 +87,11 @@ public class Card {
         this.dueAmount = dueAmount;
     }
 
-    public AccountHolder getAccountHolder() {
-        return accountHolder;
+    public Customer getAccountHolder() {
+        return customer;
     }
 
-    public void setAccountHolder(AccountHolder accountHolder) {
-        this.accountHolder = accountHolder;
+    public void setAccountHolder(Customer customer) {
+        this.customer = customer;
     }
 }

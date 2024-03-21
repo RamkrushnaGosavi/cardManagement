@@ -8,8 +8,27 @@ import java.util.Date;
 @Entity
 public class Account {
 
+
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private double accountNumber;
+
+
+    @PrePersist
+    public void generateId() {
+        long randomId = generateRandom9DigitId();
+        this.accountNumber = randomId;
+    }
+
+    private long generateRandom9DigitId() {
+        long customId = 100000000L;
+
+        return customId++;
+    }
+
+
+
     private String accountType;
     private double accountWlLimit;
 
@@ -25,7 +44,7 @@ public class Account {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private AccountHolder accountHolder;
+    private Customer customer;
 
     public double getAccountNumber() {
         return accountNumber;
@@ -83,11 +102,11 @@ public class Account {
         this.bank = bank;
     }
 
-    public AccountHolder getAccountHolder() {
-        return accountHolder;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setAccountHolder(AccountHolder accountHolder) {
-        this.accountHolder = accountHolder;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

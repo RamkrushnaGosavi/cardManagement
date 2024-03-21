@@ -1,0 +1,25 @@
+version: '3.3'
+volumes:
+  db-data:
+
+services:
+  db:
+    image: mysql:8.1.0
+    container_name: mysql
+    #    user: root:root
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cardManagement
+      # MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQLDATA: /tmp/db/data
+    volumes:
+      - db-data:/tmp/db/data
+    ports:
+      - "3307:3306"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "512m"
