@@ -8,26 +8,9 @@ import java.util.Date;
 @Entity
 public class Account {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private double accountNumber;
-
-
-    @PrePersist
-    public void generateId() {
-        long randomId = generateRandom9DigitId();
-        this.accountNumber = randomId;
-    }
-
-    private long generateRandom9DigitId() {
-        long customId = 100000000L;
-
-        return customId++;
-    }
-
-
+    private long accountNumber;
 
     private String accountType;
     private double accountWlLimit;
@@ -50,7 +33,7 @@ public class Account {
         return accountNumber;
     }
 
-    public void setAccountNumber(double accountNumber) {
+    public void setAccountNumber(long accountNumber) {
         this.accountNumber = accountNumber;
     }
 

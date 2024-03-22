@@ -19,6 +19,10 @@ public class Customer {
     private List<Account> account;
 
 
+    @ManyToOne
+    @JoinColumn(name = "bankCode")
+    private Bank bank ;
+
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Card> cards;
 
@@ -69,5 +73,21 @@ public class Customer {
 
     public void setAccount(List<Account> account) {
         this.account = account;
+    }
+
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<Card> cards) {
+        this.cards = cards;
+    }
+
+    public Bank getBank() {
+        return bank;
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
 }

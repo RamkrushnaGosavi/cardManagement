@@ -18,7 +18,13 @@ public class Bank {
     private int branchCode;
 
     @OneToMany(mappedBy = "bank" , cascade = CascadeType.ALL)
-    private List<Account> accounts ;
+    private List<Customer> customers ;
+
+
+    @OneToMany(mappedBy = "bank" , cascade = CascadeType.ALL)
+    private List<Account> Account ;
+
+
 
     public int getBankCode() {
         return bankCode;
@@ -53,11 +59,11 @@ public class Bank {
     }
 
 
-    public List<Account> getAccounts() {
-        return accounts;
+    public List<Customer> getCustomers() {
+        return customers;
     }
 
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 }
