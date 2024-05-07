@@ -28,13 +28,21 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public StatusResponce addCard(CardDto cardDto) {
-
-
-        Optional<Customer> customer = customerRepository.findById(cardDto.getCustomrId());
-
-        cardRepository.save(this.convertDtoToEntity(cardDto, customer.get()));
-
-        return  new StatusResponce(HttpStatus.CREATED.value(), "Card Created" , "Success");
+        if(cardDto != null)
+        {
+            Optional<Customer> customer = customerRepository.findById(cardDto.getCustomrId());
+            if(!customer.isEmpty()) {
+                cardRepository.save(this.convertDtoToEntity(cardDto, customer.get()));
+                return  new StatusResponce(HttpStatus.CREATED.value(), "Card Created" , "Success");
+            }
+            else {
+                return new StatusResponce(HttpStatus.BAD_REQUEST.value(), "Customer not found for ID " + cardDto.getCustomrId(), "Success");
+            }
+        }
+        else
+        {
+            return  new StatusResponce(HttpStatus.NO_CONTENT.value(), "Card not Created" , "Unsuccessful");
+        }
     }
 
 

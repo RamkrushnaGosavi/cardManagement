@@ -1,6 +1,7 @@
 package XCardManagement.controller;
 
 
+import XCardManagement.dto.CustomerDto;
 import XCardManagement.dto.StatusResponce;
 import XCardManagement.entity.Bank;
 import XCardManagement.entity.Customer;
@@ -22,10 +23,10 @@ public class CustomerController {
     CustomerService customerService ;
 
     @PostMapping("/addCustomer/{bankCode}")
-    public ResponseEntity<StatusResponce> addCustomer(@RequestBody Customer customer , @PathVariable int bankCode)
+    public ResponseEntity<StatusResponce> addCustomer(@RequestBody CustomerDto customerDto , @PathVariable int bankCode)
     {
 
-        StatusResponce addbank = customerService.addCustomer(customer , bankCode);
+        StatusResponce addbank = customerService.addCustomer(customerDto , bankCode);
 
         return new ResponseEntity<>(addbank , HttpStatus.CREATED);
     }

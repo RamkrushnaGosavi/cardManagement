@@ -1,6 +1,7 @@
 package XCardManagement.serviceImpl;
 
 
+import XCardManagement.dto.BankDto;
 import XCardManagement.dto.StatusResponce;
 import XCardManagement.entity.Bank;
 import XCardManagement.repository.BankRepository;
@@ -17,11 +18,27 @@ public class BankServiceImpl implements BankService
     BankRepository bankRepository ;
 
     @Override
-    public StatusResponce addbank(Bank bank) {
+    public StatusResponce addbank(BankDto bankDto) {
 
+        if(bankDto != null) {
 
-         bankRepository.save(bank);
+           Bank bank =  this.convertDtotoEntity(bankDto);
+            bankRepository.save(bank);
+            return new StatusResponce(HttpStatus.CREATED.value(), "Bank Created" , "Success");
+        }
+        else
+        {
+            return new StatusResponce(HttpStatus.BAD_REQUEST.value(), "Bank Not Created" , "Unsuccessful");
+        }
+    }
 
-        return new StatusResponce(HttpStatus.CREATED.value(), "Bank Created" , "Success");
+   public Bank convertDtotoEntity(BankDto bankDto)
+    {
+        Bank bank = new Bank();
+        bank.setBankCode(bankDto.getBankCode());
+        bank.setBankName(bankDto.getBankName());
+        bank.setBranchCode(bankDto.getBranchCode());
+        bank.setBranchName(bankDto.getBranchName());
+        return bank;
     }
 }

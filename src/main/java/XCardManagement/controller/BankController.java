@@ -1,6 +1,7 @@
 package XCardManagement.controller;
 
 
+import XCardManagement.dto.BankDto;
 import XCardManagement.dto.StatusResponce;
 import XCardManagement.entity.Bank;
 import XCardManagement.serviceImpl.BankServiceImpl;
@@ -19,10 +20,10 @@ public class BankController {
 
 
     @PostMapping("/addBank")
-    public ResponseEntity<StatusResponce> addBank(@RequestBody Bank bank)
+    public ResponseEntity<StatusResponce> addBank(@RequestBody BankDto bankDto)
     {
 
-        StatusResponce addbank = bankService.addbank(bank);
+        StatusResponce addbank = bankService.addbank(bankDto);
 
         return new ResponseEntity<>(addbank , HttpStatus.CREATED);
     }
