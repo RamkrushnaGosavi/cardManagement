@@ -31,16 +31,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public StatusResponce addAccount(AccountDto account) {
 
-
         Optional<Bank> bank = bankRepository.findById(account.getBankCode());
-
         Optional<Customer> customer = customerRepository.findById(account.getCustomerId());
-
         Account account1 = convertDtoToEntity(account, bank.get(), customer.get());
-
         accountRepository.save(account1);
-
-
         return new StatusResponce(HttpStatus.CREATED.value(), "Account Created" , "Success");
     }
 
