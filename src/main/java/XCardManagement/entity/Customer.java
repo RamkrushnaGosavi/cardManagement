@@ -49,7 +49,6 @@ public class Customer {
 
     public void setlName(String lName) {
         this.lName = lName;
-
     }
 
     public String getpR_Address() {
