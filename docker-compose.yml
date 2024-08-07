@@ -1,6 +1,7 @@
-version: '3.3'
+version: '3.8'
 volumes:
   db-data:
+  jenkins-store:
 
 services:
   db:
@@ -23,3 +24,17 @@ services:
         limits:
           cpus: "1.0"
           memory: "512m"
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    volumes:
+      - jenkins-store:/tmp/jenkin
+    ports:
+      - "8085:8080"
+      - "50001:50001"
+
+
+
+
+
