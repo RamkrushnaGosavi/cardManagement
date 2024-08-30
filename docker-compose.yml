@@ -1,21 +1,21 @@
 version: '3.8'
+
 volumes:
   db-data:
   jenkins-store:
+  docker-certificates:  # Volume to store Docker certificates
+  docker-data:          # Volume to persist Docker data
 
 services:
+  # Uncomment the following lines to use the MySQL service
   db:
     image: mysql:8.1.0
     container_name: mysql
-    #    user: root:root
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: cardManagement
-      # MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQLDATA: /tmp/db/data
     volumes:
-      - db-data:/tmp/db/data
+      - db-data:/var/lib/mysql  # Corrected the path to MySQL data
     ports:
       - "3307:3306"
     restart: unless-stopped
@@ -26,12 +26,25 @@ services:
           memory: "512m"
 
   jenkins:
-    image: jenkins/jenkins:lts
-    container_name: jenkins
-    volumes:
-      - jenkins-store:/tmp/jenkin
-    ports:
-      - "8085:8080"
-      - "50001:50001"
+      #image: jenkins/jenkins:lts
+      build : .
+      container_name: jenkins
+      volumes:
+        - jenkins-store:/var/jenkins_home
+        - /var/run/docker.sock:/var/run/docker.sock  # Bind Docker socket from host
+      ports:
+        - "8085:8080"
+        - "50001:50001"
+      restart: unless-stopped
 
-
+#  docker:
+#    image: docker:20.10-dind
+#    container_name: docker
+#    privileged: true
+#    environment:
+#      DOCKER_TLS_CERTDIR: /certs
+#    volumes:
+#      - docker-certificates:/certs/client  # Mount the Docker certificates directory
+#      - docker-data:/var/lib/docker        # Persist Docker data
+#    ports:
+#      - "2376:2376"

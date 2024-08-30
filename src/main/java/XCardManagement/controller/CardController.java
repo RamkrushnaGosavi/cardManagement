@@ -27,4 +27,11 @@ public class CardController {
         return new ResponseEntity<>(statusResponce , HttpStatus.CREATED);
     }
 
+    @PostMapping("/notify")
+    public String  notifiy(@RequestBody  String status)
+    {
+        System.out.println(status);
+        return status ;
+    }
+
 }

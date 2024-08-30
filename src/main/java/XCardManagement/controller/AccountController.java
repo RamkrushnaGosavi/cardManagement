@@ -7,6 +7,7 @@ import XCardManagement.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,11 @@ public class AccountController {
     @Autowired
     AccountService accountService;
 
+    @GetMapping("/")
+    public String getMassage()
+    {
+        return "HEllO !!!";
+    }
 
     @PostMapping("/addAccount")
     public ResponseEntity<StatusResponce> addAccount(@RequestBody AccountDto account)
