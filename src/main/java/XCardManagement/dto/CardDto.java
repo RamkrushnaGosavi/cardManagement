@@ -22,6 +22,10 @@ public class CardDto {
 
     private int customrId;
 
+    private int bank_code;
+
+    private long accunt_number;
+
     public double getCardNumber() {
         return cardNumber;
     }
@@ -84,5 +88,21 @@ public class CardDto {
 
     public void setCustomrId(int customrId) {
         this.customrId = customrId;
+    }
+
+    public int getBank_code() {
+        return bank_code;
+    }
+
+    public void setBank_code(int bank_code) {
+        this.bank_code = bank_code;
+    }
+
+    public long getAccunt_number() {
+        return accunt_number;
+    }
+
+    public void setAccunt_number(long accunt_number) {
+        this.accunt_number = accunt_number;
     }
 }

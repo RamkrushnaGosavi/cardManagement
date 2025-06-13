@@ -24,6 +24,9 @@ public class Bank {
     @OneToMany(mappedBy = "bank" , cascade = CascadeType.ALL)
     private List<Account> Account ;
 
+    @OneToMany(mappedBy = "bank" , cascade = CascadeType.ALL)
+    private List<Card> cards ;
+
 
 
     public int getBankCode() {

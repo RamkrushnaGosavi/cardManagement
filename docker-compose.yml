@@ -10,7 +10,7 @@ services:
   # Uncomment the following lines to use the MySQL service
   db:
     image: mysql:8.1.0
-    container_name: mysql
+    container_name: Card-Db
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: cardManagement
@@ -25,17 +25,17 @@ services:
           cpus: "1.0"
           memory: "512m"
 
-  jenkins:
-      #image: jenkins/jenkins:lts
-      build : .
-      container_name: jenkins
-      volumes:
-        - jenkins-store:/var/jenkins_home
-        - /var/run/docker.sock:/var/run/docker.sock  # Bind Docker socket from host
-      ports:
-        - "8085:8080"
-        - "50001:50001"
-      restart: unless-stopped
+#  jenkins:
+#      #image: jenkins/jenkins:lts
+#      build : .
+#      container_name: jenkins
+#      volumes:
+#        - jenkins-store:/var/jenkins_home
+#        - /var/run/docker.sock:/var/run/docker.sock  # Bind Docker socket from host
+#      ports:
+#        - "8085:8080"
+#        - "50001:50001"
+#      restart: unless-stopped
 
 #  docker:
 #    image: docker:20.10-dind

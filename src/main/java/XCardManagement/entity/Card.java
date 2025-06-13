@@ -8,7 +8,7 @@ import jakarta.persistence.ManyToOne;
 import java.util.Date;
 
 @Entity
-public class Card {
+public class    Card {
 
 
     @Id
@@ -29,6 +29,14 @@ public class Card {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "account_number")
+    Account account;
+
+    @ManyToOne
+    @JoinColumn(name = "bank_code")
+    Bank bank;
 
 
     public double getCardNumber() {
@@ -93,5 +101,29 @@ public class Card {
 
     public void setAccountHolder(Customer customer) {
         this.customer = customer;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Bank getBank() {
+        return bank;
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
 }

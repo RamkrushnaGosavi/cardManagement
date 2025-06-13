@@ -3,6 +3,7 @@ package XCardManagement.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -28,6 +29,9 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Card> cards;
 
     public double getAccountNumber() {
         return accountNumber;
